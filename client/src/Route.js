@@ -5,6 +5,7 @@ import StartGamePage from './components/startGamePage';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import App from './App';
 import AboutUs from './components/About';
+import Leaderboard from './components/leaderboard';
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
           },
           {
             path: '/leaderboard',
-            element: <Homepage />,
+            element: <Leaderboard />,
           },
           {
             path: '/review',

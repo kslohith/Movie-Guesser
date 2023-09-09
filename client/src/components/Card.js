@@ -80,13 +80,13 @@ const InfoCard = (props) => {
         <Grid item xs={12} sm={4}>
         <ImageButton
           focusRipple
-          key={movie.Title}
+          key={movie ? movie.Title: ''}
           style={{
             width: "100%",
           }}
           onClick={showAnswerAndIncrementPoint}
         >
-          <ImageSrc style={{ backgroundImage: `url(${movie.Poster})` }} />
+          <ImageSrc style={{ backgroundImage: `url(${movie ? movie.Poster: ''})` }} />
           <ImageBackdrop className="MuiImageBackdrop-root" />
           <Image>
             <Typography
@@ -110,16 +110,16 @@ const InfoCard = (props) => {
         <Grid item xs={8}>
           <CardContent>
           <Typography variant="h8">
-              {movie.Title}
+              {movie ? movie.Title: ''}
             </Typography>
             <Typography variant="body2">
-              {movie.Genre}
+              {movie ? movie.Genre: ''}
             </Typography>
             <Typography variant="body2">
-              {movie.Year}
+              {movie ? movie.Year: ''}
             </Typography>
             <Typography variant="h5" hidden={!boxOffice}>
-              {movie.BoxOffice}
+              {movie ? movie.BoxOffice: ''}
             </Typography>
           </CardContent>
         </Grid>

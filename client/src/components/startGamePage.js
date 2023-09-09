@@ -47,7 +47,6 @@ const StartGamePage = ({  }) => {
 
 
   const handleStartGame = () => {
-    console.log(name);
     document.cookie = 'user_id=' + name;
     setopenSnackBar({
       severity: 'success',

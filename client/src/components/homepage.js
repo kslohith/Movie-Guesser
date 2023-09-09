@@ -19,8 +19,7 @@ export default function Homepage() {
     const [movie1, setMovie1] = React.useState();
     const [movie2, setMovie2] = React.useState();
     const [fetchNextMovie, setFetchNextMovie] = React.useState(false);
-    const imdbMovieSet = ["tt0068646","tt0102926","tt0111161","tt0082971","tt0468569","tt0071562","tt1375666","tt0083658","tt0095016","tt0110912"]
-    const to_show = [];
+    const imdbMovieSet = ["tt0068646","tt0102926","tt0111161","tt0082971","tt0468569","tt0071562","tt1375666","tt0083658","tt0095016","tt0110912","tt0499549","tt0120338","tt4154756","tt10872600","tt0369610","tt6105098","tt0848228","tt2820852","tt1745960","tt1825683","tt1201607","tt6718170","tt2527336","tt2294629","tt2771200","tt4630562","tt1300854","tt3498820","tt1477834","tt0167260","tt1074638","tt6320628","tt2109248","tt1345836","tt7286456","tt1979376","tt1298650","tt3469046","tt2948356","tt0241527","tt2283362","tt0926084","tt2310332","tt0266543","tt5113044","tt2709768","tt2975590","tt1951264","tt9114286","tt0451279"]
     React.useEffect( () => {
       for (let i = 0; i < 2; i++) {
         const randomIndex = Math.floor(Math.random() * imdbMovieSet.length); // Generate a random index

@@ -30,6 +30,13 @@ const TwoCards = (props) => {
     useEffect(() => {
         setBoxOffice(false);
     },[movie1,movie2]);
+
+    useEffect(() => {
+      if(endGame){
+        enableNext(false);
+      }
+    },[endGame]);
+
   return (
     <>
     {!endGame && <Grid container spacing={2}>
@@ -37,10 +44,10 @@ const TwoCards = (props) => {
         <Grid item>
           <Paper elevation={3} style={{ padding: '20px' }}>
             <Typography variant="h7" align="center">
-              score:
+              SCORE :
             </Typography>
             <Typography variant="h7" align="center">
-              {score}
+             &nbsp; {score}
             </Typography>
           </Paper>
         </Grid>
@@ -55,14 +62,16 @@ const TwoCards = (props) => {
     </Grid>
     }
     {endGame && <Grid container justifyContent="center" spacing={2}>
-      <Paper elevation={3} style={{ padding: '20px' }}>
+      <Paper elevation={3} style={{ padding: '20px', margin: '16px' }}>
+          <Typography variant="h6" align="center">
+              Wrong answer
+          </Typography>
           <Typography variant="h7" align="center">
               Thanks for playing. Your Final Score is {score}
           </Typography>
           <Typography align="center" style={{margin: '8px'}}>
             <Button onClick={restartGame} variant="outlined">Restart game</Button>
           </Typography>
-          
       </Paper>
     </Grid>
     }

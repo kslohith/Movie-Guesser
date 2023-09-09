@@ -5,6 +5,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import Typography from '@mui/material/Typography';
+import db from './firebase';
+import { doc, setDoc } from "firebase/firestore";
 
 
 function PopupComponent(props) {
@@ -14,6 +16,20 @@ function PopupComponent(props) {
     const handleClose = () => {
         oncloseHandler(false);
     };
+
+    const pushDataToFirebase = async() => {
+        await setDoc(doc(db, "movie", generateRandomId()), {
+            name: "test",
+            score: score,
+          });
+    }
+
+    function generateRandomId() {
+        const timestamp = new Date().getTime(); 
+        const random = Math.random().toString(36).substring(2, 15);
+        const uniqueId = `${timestamp}${random}`; 
+        return uniqueId;
+      }
   
     const getResult = () => {
         if(parseFloat(selectedMovie.BoxOffice.replace('$', '')) >= parseFloat(movie1.BoxOffice.replace('$', '')) &&  parseFloat(selectedMovie.BoxOffice.replace('$', '')) >= parseFloat(movie2.BoxOffice.replace('$', ''))){
@@ -23,6 +39,7 @@ function PopupComponent(props) {
         else{
             setResult(false);
             endGameHandler(true);
+            pushDataToFirebase();
         }
     }
 
