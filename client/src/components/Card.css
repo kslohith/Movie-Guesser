@@ -1,0 +1,7 @@
+/* Styles for small screens (mobile) */
+@media (max-width: 600px) {
+    .MuiCardContent-root {
+      padding: 8px; /* Adjust padding for mobile */
+    }
+}
+  
