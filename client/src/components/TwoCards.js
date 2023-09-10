@@ -42,7 +42,7 @@ const TwoCards = (props) => {
     {!endGame && <Grid container spacing={2}>
        <Grid container justifyContent="center" spacing={2}>
         <Grid item>
-          <Paper elevation={3} style={{ padding: '20px' }}>
+          <Paper elevation={3} style={{ padding: '20px', margin: '8px' }}>
             <Typography variant="h7" align="center">
               SCORE :
             </Typography>

@@ -16,7 +16,7 @@ function ResponsiveDrawer({ window }) {
   };
 
   return (
-    <Box className="App" sx={{ display: 'flex' }}>
+    <Box className="App" sx={{ display: 'flex' , backgroundColor: '#f0f0f0' }}>
       <CssBaseline />
       <Box
         component="main"

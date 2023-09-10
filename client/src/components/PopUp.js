@@ -12,14 +12,27 @@ import { doc, setDoc } from "firebase/firestore";
 function PopupComponent(props) {
     const {selectedMovie, movie1, movie2, oncloseHandler, scoreHandler, score, endGameHandler} = props;
     const [result, setResult] = React.useState(false);
+    const [userName, setUserName] = React.useState('');
   
     const handleClose = () => {
         oncloseHandler(false);
     };
 
-    const pushDataToFirebase = async() => {
+
+    const getUserIdFromCookie = () => {
+      const cookies = document.cookie.split(';');
+      for (const cookie of cookies) {
+        const [name, value] = cookie.trim().split('=');
+        if (name === 'user_id') {
+          return decodeURIComponent(value);
+        }
+      }
+      return '';
+    };
+
+    const pushDataToFirebase = async(name) => {
         await setDoc(doc(db, "movie", generateRandomId()), {
-            name: "test",
+            name: name,
             score: score,
           });
     }
@@ -31,7 +44,7 @@ function PopupComponent(props) {
         return uniqueId;
       }
   
-    const getResult = () => {
+    const getResult = (name) => {
         if(parseFloat(selectedMovie.BoxOffice.replace('$', '')) >= parseFloat(movie1.BoxOffice.replace('$', '')) &&  parseFloat(selectedMovie.BoxOffice.replace('$', '')) >= parseFloat(movie2.BoxOffice.replace('$', ''))){
             setResult(true);
             scoreHandler(score+1);
@@ -39,12 +52,15 @@ function PopupComponent(props) {
         else{
             setResult(false);
             endGameHandler(true);
-            pushDataToFirebase();
+            pushDataToFirebase(name);
         }
     }
 
     React.useEffect(() => {
-        getResult();
+        const userIdFromCookie = getUserIdFromCookie();
+        console.log("name",userIdFromCookie);
+        setUserName(userIdFromCookie);
+        getResult(userIdFromCookie);
     },[]);
 
     const getAnswer = () => {

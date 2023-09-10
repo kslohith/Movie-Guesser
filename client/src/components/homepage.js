@@ -3,6 +3,11 @@ import { getMovieDetailsById } from '../api/movie';
 import { Grid, Typography, ButtonBase, styled, Button } from '@mui/material';
 import Loading from './common/LoadingIndicator';
 import TwoCards from './TwoCards';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const StyledButtonBase = styled(ButtonBase)(({ theme }) => ({
     width: '100%',
@@ -16,6 +21,7 @@ const Movie = {
 
 export default function Homepage() {
 
+    const [showInstruction, setShowInstruction] = React.useState(false);
     const [movie1, setMovie1] = React.useState();
     const [movie2, setMovie2] = React.useState();
     const [fetchNextMovie, setFetchNextMovie] = React.useState(false);
@@ -35,7 +41,12 @@ export default function Homepage() {
           })
         }
       }
+      setShowInstruction(true);
     },[]);
+
+    const handleClose = () => {
+      setShowInstruction(false);
+    }
 
     const getRandomId = () => {
       const newMovie1 = movie1.boxOffice > movie2.boxOffice ? movie1:movie2;
@@ -49,24 +60,36 @@ export default function Homepage() {
     }
 
   return (
+  <>
     <Grid container spacing={2}>
-     <Grid container spacing={2}>
-      {/* Heading */}
-      <Grid item xs={6}>
+     <Grid container spacing={2} style={{ margin: '8px'}}>
+      {movie1 != null ? <TwoCards movie1={movie1} movie2={movie2} enableNext={setFetchNextMovie}/> : <Loading />}
+    </Grid>
+    <Grid item xs={6}>
         <Typography variant="h7" gutterBottom>
           
         </Typography>
       </Grid>
-
-      {/* Button */}
       <Grid item xs={6} textAlign={"right"} >
-        <Button variant="contained" color="primary" style={{margin: "8px"}} disabled={!fetchNextMovie} onClick={getRandomId}>
-          Next
+        <Button variant="contained" color="primary" style={{margin: "2px"}} disabled={!fetchNextMovie} onClick={getRandomId}>
+          Next Question
         </Button>
       </Grid>
     </Grid>
-     
-      {movie1 != null ? <TwoCards movie1={movie1} movie2={movie2} enableNext={setFetchNextMovie}/> : <Loading />}
-    </Grid>
+
+    <Dialog open={showInstruction} onClose={handleClose}>
+        <DialogTitle>Game Instructions</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Welcome to the game! For each question, select the movie you think got higher box office collection.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+    </Dialog>
+  </>
   );
 }

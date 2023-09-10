@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.nameofyourapp",
-  "appName": "smartgrocery",
+  "appName": "Movie Guesser",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
