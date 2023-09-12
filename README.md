@@ -17,3 +17,8 @@ To run it locally,
 4. this will open the react project in android studio, you can build the app and then later bundle the code into an apk <br>
 
 Enjoy !
+
+Incorporating Multiplayer Setup: Add a multiplayer mode where users can compete against friends or other players in real-time
+Customization: Allow users to customize the game settings, such as the number of rounds or the difficulty level.
+
+
