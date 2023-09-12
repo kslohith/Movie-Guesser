@@ -21,4 +21,5 @@ Enjoy !
 Incorporating Multiplayer Setup: Add a multiplayer mode where users can compete against friends or other players in real-time
 Customization: Allow users to customize the game settings, such as the number of rounds or the difficulty level.
 
-
+Architecture of the app
+![Screenshot](movie_guesser.jpg)
